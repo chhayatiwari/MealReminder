@@ -9,21 +9,23 @@
 /* Begin PBXBuildFile section */
 		0E73827010A0336E7CD8904E /* Pods_MealReminder.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E3290E8DB31B21D539DAF9D1 /* Pods_MealReminder.framework */; };
 		182FEF182158ECE1003100D1 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 182FEF172158ECE1003100D1 /* AppDelegate.swift */; };
-		182FEF1A2158ECE1003100D1 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 182FEF192158ECE1003100D1 /* ViewController.swift */; };
+		182FEF1A2158ECE1003100D1 /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 182FEF192158ECE1003100D1 /* HomeViewController.swift */; };
 		182FEF1D2158ECE1003100D1 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 182FEF1B2158ECE1003100D1 /* Main.storyboard */; };
 		182FEF1F2158ECE6003100D1 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 182FEF1E2158ECE6003100D1 /* Assets.xcassets */; };
 		182FEF222158ECE6003100D1 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 182FEF202158ECE6003100D1 /* LaunchScreen.storyboard */; };
+		182FEF2A21591516003100D1 /* APIRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 182FEF2921591516003100D1 /* APIRouter.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		01BF4F39EFD310D018B0C2B4 /* Pods-MealReminder.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MealReminder.debug.xcconfig"; path = "Pods/Target Support Files/Pods-MealReminder/Pods-MealReminder.debug.xcconfig"; sourceTree = "<group>"; };
 		182FEF142158ECE1003100D1 /* MealReminder.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MealReminder.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		182FEF172158ECE1003100D1 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		182FEF192158ECE1003100D1 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		182FEF192158ECE1003100D1 /* HomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
 		182FEF1C2158ECE1003100D1 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		182FEF1E2158ECE6003100D1 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		182FEF212158ECE6003100D1 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		182FEF232158ECE6003100D1 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		182FEF2921591516003100D1 /* APIRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIRouter.swift; sourceTree = "<group>"; };
 		83E5815FBCBF608757F7635D /* Pods-MealReminder.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MealReminder.release.xcconfig"; path = "Pods/Target Support Files/Pods-MealReminder/Pods-MealReminder.release.xcconfig"; sourceTree = "<group>"; };
 		E3290E8DB31B21D539DAF9D1 /* Pods_MealReminder.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_MealReminder.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
@@ -62,7 +64,8 @@
 			isa = PBXGroup;
 			children = (
 				182FEF172158ECE1003100D1 /* AppDelegate.swift */,
-				182FEF192158ECE1003100D1 /* ViewController.swift */,
+				182FEF192158ECE1003100D1 /* HomeViewController.swift */,
+				182FEF2921591516003100D1 /* APIRouter.swift */,
 				182FEF1B2158ECE1003100D1 /* Main.storyboard */,
 				182FEF1E2158ECE6003100D1 /* Assets.xcassets */,
 				182FEF202158ECE6003100D1 /* LaunchScreen.storyboard */,
@@ -204,7 +207,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				182FEF1A2158ECE1003100D1 /* ViewController.swift in Sources */,
+				182FEF1A2158ECE1003100D1 /* HomeViewController.swift in Sources */,
+				182FEF2A21591516003100D1 /* APIRouter.swift in Sources */,
 				182FEF182158ECE1003100D1 /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -353,7 +357,10 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 9T3NX6NLA5;
 				INFOPLIST_FILE = MealReminder/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
 				PRODUCT_BUNDLE_IDENTIFIER = ChhayaTiwari.MealReminder;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 4.0;
@@ -369,7 +376,10 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 9T3NX6NLA5;
 				INFOPLIST_FILE = MealReminder/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
 				PRODUCT_BUNDLE_IDENTIFIER = ChhayaTiwari.MealReminder;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 4.0;
