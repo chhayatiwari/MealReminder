@@ -1,5 +1,5 @@
 //
-//  ViewController.swift
+//  HomeViewController.swift
 //  MealReminder
 //
 //  Created by Chhaya Tiwari on 9/24/18.
@@ -18,7 +18,11 @@ class HomeViewController: UIViewController, FSCalendarDataSource, FSCalendarDele
     @IBOutlet weak var datelabel: UILabel!
     @IBOutlet weak var calendar: FSCalendar!
     @IBOutlet weak var calendarHeightConstraint: NSLayoutConstraint!
-    var mealOfDay:[MealDay] = [MealDay]()
+    
+    var weeks:[String] = ["monday", "tuesday", "wednesday", "thursday", "friday", "saturday", "sunday"]
+    var mealOfDay:[String:[MealDay]] = [:]
+    var day:String!
+    var count = 0
     fileprivate lazy var dateFormatter: DateFormatter = {
         let formatter = DateFormatter()
         formatter.dateStyle = .medium
@@ -39,13 +43,16 @@ class HomeViewController: UIViewController, FSCalendarDataSource, FSCalendarDele
     override func viewDidLoad() {
         super.viewDidLoad()
         setInitials()
-        // For UITest
-        //self.activityIndicator.isHidden = true
+        let notificationSettings = UIUserNotificationSettings(types: [.alert, .badge, .sound], categories: nil)
+        UIApplication.shared.registerUserNotificationSettings(notificationSettings)
+        
+        showMealForTheDay()
         calendar.setCurrentPage(Date(), animated: true)
         self.calendar.accessibilityIdentifier = "calendar"
-        let day = getDayFromDate(date: Date()).lowercased()
-        if (day == "wednesday") || (day == "monday"){
-            showMealForTheDay(day)
+        day = getDayFromDate(date: Date()).lowercased()
+        
+        if (day == "wednesday") || (day == "monday") || (day == "thursday"){
+         tableView.reloadData()
         }
     }
     
@@ -97,29 +104,23 @@ class HomeViewController: UIViewController, FSCalendarDataSource, FSCalendarDele
     
     func calendar(_ calendar: FSCalendar, didSelect date: Date, at monthPosition: FSCalendarMonthPosition) {
         datelabel.text = self.dateFormatter.string(from: date)
-        let day = getDayFromDate(date: date).lowercased()
-        mealOfDay.removeAll()
+        day = getDayFromDate(date: date).lowercased()
         tableView.reloadData()
-        if date <= Date() && (day == "monday" || day == "wednesday" || day == "thursday"){
-            showMealForTheDay(day)
+        if (day == "monday" || day == "wednesday" || day == "thursday"){
+            
             if monthPosition == .next || monthPosition == .previous {
                 calendar.setCurrentPage(date, animated: true)
             }
-        }else if date >= Date() {
-            showAlert("Invalid Date Selected")
         }
     }
     
     func calendar(_ calendar: FSCalendar, shouldSelect date: Date, at monthPosition: FSCalendarMonthPosition) -> Bool {
-        if date <= Date(){
+        
             return true
-        }else{
-            return false
-        }
     }
     
     // Api Call
-    func showMealForTheDay(_ day:String) {
+    func showMealForTheDay() {
        
         let parameters = ["":""]
         Alamofire.request(APIRouter.mealApi(params: parameters )).responseJSON { (responseData) -> Void in
@@ -131,10 +132,18 @@ class HomeViewController: UIViewController, FSCalendarDataSource, FSCalendarDele
                 guard let weekDiet = swiftyJsonVar["week_diet_data"] as? [String:AnyObject] else {
                         return
                 }
-                if let meal = weekDiet[day] as? [[String:AnyObject]] {
-                    self.mealOfDay = MealDay.dataForMeal(meal)
-                    self.tableView.reloadData()
+                
+                for week in self.weeks {
+                    if let meal = weekDiet[week] as? [[String:AnyObject]] {
+                        self.mealOfDay[week] = MealDay.dataForMeal(meal)
+                           self.count += 1
+                    }
                 }
+                
+                    for meal in self.mealOfDay {
+                    //self.scheduleNotification(date: dateFormatter.string(from: Date()), time: meal.time, subject: meal.food)
+                    }
+                
             }
         }
         
@@ -167,17 +176,33 @@ class HomeViewController: UIViewController, FSCalendarDataSource, FSCalendarDele
         let needsConnection = flags.contains(.connectionRequired)
         return (isReachable && !needsConnection)
     }
+    
+    
+        
+       
+    
+    
     //TableView
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return mealOfDay.count
-    }
+        if let meal = mealOfDay[self.day] {
+            return meal.count
+        }
+        else {
+        return 0
+        }
+        }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "ShowMeal")
-        let index = indexPath.row
-        cell?.textLabel?.text = mealOfDay[index].time
-        cell?.detailTextLabel?.text = mealOfDay[index].food
+        
+        if let meal = mealOfDay[self.day]  {
+            let index = indexPath.row
+            cell?.textLabel?.text = meal[index].time
+            cell?.detailTextLabel?.text = meal[index].food
+        }
+        
+        
         return cell!
     }
 }
