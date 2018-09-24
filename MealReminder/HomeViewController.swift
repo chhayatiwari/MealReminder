@@ -18,7 +18,7 @@ class HomeViewController: UIViewController, FSCalendarDataSource, FSCalendarDele
     @IBOutlet weak var datelabel: UILabel!
     @IBOutlet weak var calendar: FSCalendar!
     @IBOutlet weak var calendarHeightConstraint: NSLayoutConstraint!
-    
+    var mealOfDay:[MealDay] = [MealDay]()
     fileprivate lazy var dateFormatter: DateFormatter = {
         let formatter = DateFormatter()
         formatter.dateStyle = .medium
@@ -98,7 +98,7 @@ class HomeViewController: UIViewController, FSCalendarDataSource, FSCalendarDele
     func calendar(_ calendar: FSCalendar, didSelect date: Date, at monthPosition: FSCalendarMonthPosition) {
         datelabel.text = self.dateFormatter.string(from: date)
         let day = getDayFromDate(date: date).lowercased()
-        
+        mealOfDay.removeAll()
         tableView.reloadData()
         if date <= Date() && (day == "monday" || day == "wednesday" || day == "thursday"){
             showMealForTheDay(day)
@@ -125,8 +125,15 @@ class HomeViewController: UIViewController, FSCalendarDataSource, FSCalendarDele
         Alamofire.request(APIRouter.mealApi(params: parameters )).responseJSON { (responseData) -> Void in
             if let response = (responseData.result.value)  {
                 
-                if let swiftyJsonVar = JSON(response).dictionaryObject {
-                    print(day)
+                guard let swiftyJsonVar = JSON(response).dictionaryObject else {
+                   return
+                }
+                guard let weekDiet = swiftyJsonVar["week_diet_data"] as? [String:AnyObject] else {
+                        return
+                }
+                if let meal = weekDiet[day] as? [[String:AnyObject]] {
+                    self.mealOfDay = MealDay.dataForMeal(meal)
+                    self.tableView.reloadData()
                 }
             }
         }
@@ -163,11 +170,14 @@ class HomeViewController: UIViewController, FSCalendarDataSource, FSCalendarDele
     //TableView
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 1
+        return mealOfDay.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "ShowMeal")
+        let index = indexPath.row
+        cell?.textLabel?.text = mealOfDay[index].time
+        cell?.detailTextLabel?.text = mealOfDay[index].food
         return cell!
     }
 }
