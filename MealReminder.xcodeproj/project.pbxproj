@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		0E73827010A0336E7CD8904E /* Pods_MealReminder.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E3290E8DB31B21D539DAF9D1 /* Pods_MealReminder.framework */; };
 		182FEF182158ECE1003100D1 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 182FEF172158ECE1003100D1 /* AppDelegate.swift */; };
 		182FEF1A2158ECE1003100D1 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 182FEF192158ECE1003100D1 /* ViewController.swift */; };
 		182FEF1D2158ECE1003100D1 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 182FEF1B2158ECE1003100D1 /* Main.storyboard */; };
@@ -15,6 +16,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		01BF4F39EFD310D018B0C2B4 /* Pods-MealReminder.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MealReminder.debug.xcconfig"; path = "Pods/Target Support Files/Pods-MealReminder/Pods-MealReminder.debug.xcconfig"; sourceTree = "<group>"; };
 		182FEF142158ECE1003100D1 /* MealReminder.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MealReminder.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		182FEF172158ECE1003100D1 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		182FEF192158ECE1003100D1 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -22,6 +24,8 @@
 		182FEF1E2158ECE6003100D1 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		182FEF212158ECE6003100D1 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		182FEF232158ECE6003100D1 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		83E5815FBCBF608757F7635D /* Pods-MealReminder.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MealReminder.release.xcconfig"; path = "Pods/Target Support Files/Pods-MealReminder/Pods-MealReminder.release.xcconfig"; sourceTree = "<group>"; };
+		E3290E8DB31B21D539DAF9D1 /* Pods_MealReminder.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_MealReminder.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -29,6 +33,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				0E73827010A0336E7CD8904E /* Pods_MealReminder.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -40,6 +45,8 @@
 			children = (
 				182FEF162158ECE1003100D1 /* MealReminder */,
 				182FEF152158ECE1003100D1 /* Products */,
+				C3E1DAB1834CBE75A24C8176 /* Pods */,
+				80929E16219AEBDCCCF28379 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -64,6 +71,23 @@
 			path = MealReminder;
 			sourceTree = "<group>";
 		};
+		80929E16219AEBDCCCF28379 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				E3290E8DB31B21D539DAF9D1 /* Pods_MealReminder.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		C3E1DAB1834CBE75A24C8176 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				01BF4F39EFD310D018B0C2B4 /* Pods-MealReminder.debug.xcconfig */,
+				83E5815FBCBF608757F7635D /* Pods-MealReminder.release.xcconfig */,
+			);
+			name = Pods;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -71,9 +95,11 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 182FEF262158ECE6003100D1 /* Build configuration list for PBXNativeTarget "MealReminder" */;
 			buildPhases = (
+				C01BF7A8E38722078B372C6C /* [CP] Check Pods Manifest.lock */,
 				182FEF102158ECE1003100D1 /* Sources */,
 				182FEF112158ECE1003100D1 /* Frameworks */,
 				182FEF122158ECE1003100D1 /* Resources */,
+				3B725A0E9D772FC04FCA6BF0 /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -129,6 +155,49 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		3B725A0E9D772FC04FCA6BF0 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"${SRCROOT}/Pods/Target Support Files/Pods-MealReminder/Pods-MealReminder-frameworks.sh",
+				"${BUILT_PRODUCTS_DIR}/Alamofire/Alamofire.framework",
+				"${BUILT_PRODUCTS_DIR}/FSCalendar/FSCalendar.framework",
+				"${BUILT_PRODUCTS_DIR}/SwiftyJSON/SwiftyJSON.framework",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputPaths = (
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Alamofire.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/FSCalendar.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SwiftyJSON.framework",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-MealReminder/Pods-MealReminder-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		C01BF7A8E38722078B372C6C /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-MealReminder-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		182FEF102158ECE1003100D1 /* Sources */ = {
@@ -278,15 +347,13 @@
 		};
 		182FEF272158ECE6003100D1 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 01BF4F39EFD310D018B0C2B4 /* Pods-MealReminder.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 9T3NX6NLA5;
 				INFOPLIST_FILE = MealReminder/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = (
-					"$(inherited)",
-					"@executable_path/Frameworks",
-				);
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = ChhayaTiwari.MealReminder;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 4.0;
@@ -296,15 +363,13 @@
 		};
 		182FEF282158ECE6003100D1 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 83E5815FBCBF608757F7635D /* Pods-MealReminder.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 9T3NX6NLA5;
 				INFOPLIST_FILE = MealReminder/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = (
-					"$(inherited)",
-					"@executable_path/Frameworks",
-				);
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = ChhayaTiwari.MealReminder;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 4.0;
