@@ -19,7 +19,7 @@ class HomeViewController: UIViewController, FSCalendarDataSource, FSCalendarDele
     @IBOutlet weak var calendar: FSCalendar!
     @IBOutlet weak var calendarHeightConstraint: NSLayoutConstraint!
     
-    var weeks:[String] = ["monday", "tuesday", "wednesday", "thursday", "friday", "saturday", "sunday"]
+    var weeks:[String] = ["monday", "wednesday", "thursday"]
     var mealOfDay:[String:[MealDay]] = [:]
     var day:String!
     var count = 0
@@ -139,12 +139,38 @@ class HomeViewController: UIViewController, FSCalendarDataSource, FSCalendarDele
                            self.count += 1
                     }
                 }
-                
-                    for meal in self.mealOfDay {
-                    //self.scheduleNotification(date: dateFormatter.string(from: Date()), time: meal.time, subject: meal.food)
+                for week in self.weeks {
+                    for meal in self.mealOfDay[week] {
+                       self.scheduleNotification(week: week, time: meal.time, subject: meal.food)
                     }
-                
+                }
             }
+        }
+        
+    }
+    
+    func scheduleNotification(week: String, time: String, subject: String) {
+        
+        let today = Date()
+        if getDayFromDate(date: today) == week {
+        let calendar = NSCalendar.current
+        let components = calendar.dateComponents([.day, .month, .year], from: today)
+            var dateComp:DateComponents = DateComponents()
+            dateComp.day = components.day
+            dateComp.month = components.month
+            dateComp.year = components.year
+            dateComp.hour = Int(time)
+            dateComp.minute = 00
+            let date = calendar.date(from: dateComp)
+            let localNotificationSilent = UILocalNotification()
+            localNotificationSilent.fireDate = date
+           // localNotificationSilent.repeatInterval = .day
+            localNotificationSilent.alertBody = subject
+            localNotificationSilent.alertAction = "swipe to hear!"
+            localNotificationSilent.category = "PLAY_CATEGORY"
+            UIApplication.shared.scheduleLocalNotification(localNotificationSilent)
+            localNotificationSilent.fireDate = date
+            
         }
         
     }

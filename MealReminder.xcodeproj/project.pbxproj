@@ -15,6 +15,7 @@
 		182FEF222158ECE6003100D1 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 182FEF202158ECE6003100D1 /* LaunchScreen.storyboard */; };
 		182FEF2A21591516003100D1 /* APIRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 182FEF2921591516003100D1 /* APIRouter.swift */; };
 		182FEF2C21593335003100D1 /* MealDay.swift in Sources */ = {isa = PBXBuildFile; fileRef = 182FEF2B21593335003100D1 /* MealDay.swift */; };
+		182FEF2E2159F1E3003100D1 /* GCDBlackBox.swift in Sources */ = {isa = PBXBuildFile; fileRef = 182FEF2D2159F1E2003100D1 /* GCDBlackBox.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -28,6 +29,7 @@
 		182FEF232158ECE6003100D1 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		182FEF2921591516003100D1 /* APIRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIRouter.swift; sourceTree = "<group>"; };
 		182FEF2B21593335003100D1 /* MealDay.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MealDay.swift; sourceTree = "<group>"; };
+		182FEF2D2159F1E2003100D1 /* GCDBlackBox.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GCDBlackBox.swift; sourceTree = "<group>"; };
 		83E5815FBCBF608757F7635D /* Pods-MealReminder.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MealReminder.release.xcconfig"; path = "Pods/Target Support Files/Pods-MealReminder/Pods-MealReminder.release.xcconfig"; sourceTree = "<group>"; };
 		E3290E8DB31B21D539DAF9D1 /* Pods_MealReminder.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_MealReminder.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
@@ -67,6 +69,7 @@
 			children = (
 				182FEF172158ECE1003100D1 /* AppDelegate.swift */,
 				182FEF192158ECE1003100D1 /* HomeViewController.swift */,
+				182FEF2D2159F1E2003100D1 /* GCDBlackBox.swift */,
 				182FEF2B21593335003100D1 /* MealDay.swift */,
 				182FEF2921591516003100D1 /* APIRouter.swift */,
 				182FEF1B2158ECE1003100D1 /* Main.storyboard */,
@@ -214,6 +217,7 @@
 				182FEF2C21593335003100D1 /* MealDay.swift in Sources */,
 				182FEF2A21591516003100D1 /* APIRouter.swift in Sources */,
 				182FEF182158ECE1003100D1 /* AppDelegate.swift in Sources */,
+				182FEF2E2159F1E3003100D1 /* GCDBlackBox.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
