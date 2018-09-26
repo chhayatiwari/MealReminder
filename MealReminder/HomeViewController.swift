@@ -66,7 +66,7 @@ class HomeViewController: UIViewController, FSCalendarDataSource, FSCalendarDele
         completionHandler([.alert])
     }
     
-    func promtForNotification(week: String, time: String, subject: String) {
+    func promtForNotification(week: String, hour: Int, min: Int, subject: String) {
         // Request Notification Settings
         UNUserNotificationCenter.current().getNotificationSettings { (notificationSettings) in
             switch notificationSettings.authorizationStatus {
@@ -75,15 +75,15 @@ class HomeViewController: UIViewController, FSCalendarDataSource, FSCalendarDele
                     guard success else { return }
                     
                     // Schedule Local Notification
-                    self.scheduleLocalNotification(week, "18", subject)
+                    self.scheduleLocalNotification(week, hour, min, subject)
                 })
             case .authorized:
                 // Schedule Local Notification
-                self.scheduleLocalNotification(week, "18", subject)
+                self.scheduleLocalNotification(week, hour, min, subject)
             case .denied:
                 print("Application Not Allowed to Display Notifications")
             default:
-                self.scheduleLocalNotification(week, "18", subject)
+                self.scheduleLocalNotification(week, hour, min, subject)
             }
         }
     }
@@ -101,7 +101,7 @@ class HomeViewController: UIViewController, FSCalendarDataSource, FSCalendarDele
         }
     }
     
-    private func scheduleLocalNotification(_ week: String,_ time: String,_ subject: String) {
+    private func scheduleLocalNotification(_ week: String, _ hour: Int, _ min: Int,_ subject: String) {
         
         // Create Notification Content
         let notificationContent = UNMutableNotificationContent()
@@ -118,9 +118,11 @@ class HomeViewController: UIViewController, FSCalendarDataSource, FSCalendarDele
         dateComp.day = components.day
         dateComp.month = components.month
         dateComp.year = components.year
-            dateComp.hour = Int(time)! % 100
-        dateComp.minute = 00
+            dateComp.hour = hour
+        dateComp.minute = min
             // Add Trigger
+           // Calendar.current.date(byAdding: .minute, value: minutes, to: self)
+            
         let notificationTrigger = UNCalendarNotificationTrigger(dateMatching: dateComp, repeats: true)
         
         
@@ -198,7 +200,8 @@ class HomeViewController: UIViewController, FSCalendarDataSource, FSCalendarDele
     
     // Api Call
     func showMealForTheDay() {
-       
+        var hour:Int!
+        var min:Int!
         let parameters = ["":""]
         Alamofire.request(APIRouter.mealApi(params: parameters )).responseJSON { (responseData) -> Void in
             if let response = (responseData.result.value)  {
@@ -219,7 +222,13 @@ class HomeViewController: UIViewController, FSCalendarDataSource, FSCalendarDele
                 self.tableView.reloadData()
                 for week in self.weeks {
                     for meal in self.mealOfDay[week]! {
-                       self.promtForNotification(week: week, time: meal.time, subject: meal.food)
+                        let time:[Substring] = meal.time.split(separator: ":", maxSplits: 2, omittingEmptySubsequences: true)
+                           hour = Int(time[0])
+                           min = Int(time[1])
+                            print(hour!)
+                            print(min!)
+                        
+                        self.promtForNotification(week: week, hour: hour!, min: min!, subject: meal.food)
                     }
                 }
             }
