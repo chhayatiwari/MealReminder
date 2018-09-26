@@ -102,7 +102,8 @@ class HomeViewController: UIViewController, FSCalendarDataSource, FSCalendarDele
     }
     
     private func scheduleLocalNotification(_ week: String, _ hour: Int, _ min: Int,_ subject: String) {
-        
+        var hour1 = hour
+        var min1 = min
         // Create Notification Content
         let notificationContent = UNMutableNotificationContent()
         
@@ -130,8 +131,15 @@ class HomeViewController: UIViewController, FSCalendarDataSource, FSCalendarDele
         dateComp.day = components.day
         dateComp.month = components.month
         dateComp.year = components.year
-            dateComp.hour = hour
-            dateComp.minute = min
+            if min < 5 {
+                min1 = 55
+                hour1 = hour-1
+            }
+            else {
+                min1 = min - 5
+            }
+            dateComp.hour = hour1
+            dateComp.minute = min1
             // Add Trigger
            // Calendar.current.date(byAdding: .minute, value: minutes, to: self)
             
