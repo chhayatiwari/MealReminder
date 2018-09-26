@@ -140,7 +140,7 @@ class HomeViewController: UIViewController, FSCalendarDataSource, FSCalendarDele
                     }
                 }
                 for week in self.weeks {
-                    for meal in self.mealOfDay[week] {
+                    for meal in self.mealOfDay[week]! {
                        self.scheduleNotification(week: week, time: meal.time, subject: meal.food)
                     }
                 }
