@@ -44,10 +44,10 @@ class HomeViewController: UIViewController, FSCalendarDataSource, FSCalendarDele
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        UNUserNotificationCenter.current().removeAllPendingNotificationRequests()
         setInitials()
         // Configure User Notification Center
         UNUserNotificationCenter.current().delegate = self
-
         showMealForTheDay()
         calendar.setCurrentPage(Date(), animated: true)
         self.calendar.accessibilityIdentifier = "calendar"
@@ -121,6 +121,7 @@ class HomeViewController: UIViewController, FSCalendarDataSource, FSCalendarDele
             notificationContent.title = "Dinner Time"
         }
         notificationContent.body = subject
+        notificationContent.sound = UNNotificationSound(named: UNNotificationSoundName(rawValue: "notify.wav"))
         let today = Date()
         
         if getDayFromDate(date: today).lowercased() == week {
