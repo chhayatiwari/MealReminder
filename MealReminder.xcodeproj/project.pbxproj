@@ -131,6 +131,7 @@
 				TargetAttributes = {
 					182FEF132158ECE1003100D1 = {
 						CreatedOnToolsVersion = 9.4.1;
+						LastSwiftMigration = 1000;
 					};
 				};
 			};
@@ -371,7 +372,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = ChhayaTiwari.MealReminder;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_VERSION = 4.0;
+				SWIFT_VERSION = 4.2;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Debug;
@@ -390,7 +391,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = ChhayaTiwari.MealReminder;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_VERSION = 4.0;
+				SWIFT_VERSION = 4.2;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Release;

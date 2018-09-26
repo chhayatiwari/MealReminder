@@ -11,8 +11,9 @@ import FSCalendar
 import Alamofire
 import SwiftyJSON
 import SystemConfiguration
+import UserNotifications
 
-class HomeViewController: UIViewController, FSCalendarDataSource, FSCalendarDelegate, FSCalendarDelegateAppearance, UIGestureRecognizerDelegate, UITableViewDataSource, UITableViewDelegate {
+class HomeViewController: UIViewController, FSCalendarDataSource, FSCalendarDelegate, FSCalendarDelegateAppearance, UIGestureRecognizerDelegate, UNUserNotificationCenterDelegate {
 
     @IBOutlet weak var tableView: UITableView!
     @IBOutlet weak var datelabel: UILabel!
@@ -23,6 +24,7 @@ class HomeViewController: UIViewController, FSCalendarDataSource, FSCalendarDele
     var mealOfDay:[String:[MealDay]] = [:]
     var day:String!
     var count = 0
+    
     fileprivate lazy var dateFormatter: DateFormatter = {
         let formatter = DateFormatter()
         formatter.dateStyle = .medium
@@ -43,9 +45,9 @@ class HomeViewController: UIViewController, FSCalendarDataSource, FSCalendarDele
     override func viewDidLoad() {
         super.viewDidLoad()
         setInitials()
-        let notificationSettings = UIUserNotificationSettings(types: [.alert, .badge, .sound], categories: nil)
-        UIApplication.shared.registerUserNotificationSettings(notificationSettings)
-        
+        // Configure User Notification Center
+        UNUserNotificationCenter.current().delegate = self
+
         showMealForTheDay()
         calendar.setCurrentPage(Date(), animated: true)
         self.calendar.accessibilityIdentifier = "calendar"
@@ -58,6 +60,81 @@ class HomeViewController: UIViewController, FSCalendarDataSource, FSCalendarDele
     
     deinit {
         print("\(#function)")
+    }
+    
+    func userNotificationCenter(_ center: UNUserNotificationCenter, willPresent notification: UNNotification, withCompletionHandler completionHandler: @escaping (UNNotificationPresentationOptions) -> Void) {
+        completionHandler([.alert])
+    }
+    
+    func promtForNotification(week: String, time: String, subject: String) {
+        // Request Notification Settings
+        UNUserNotificationCenter.current().getNotificationSettings { (notificationSettings) in
+            switch notificationSettings.authorizationStatus {
+            case .notDetermined:
+                self.requestAuthorization(completionHandler: { (success) in
+                    guard success else { return }
+                    
+                    // Schedule Local Notification
+                    self.scheduleLocalNotification(week, "18", subject)
+                })
+            case .authorized:
+                // Schedule Local Notification
+                self.scheduleLocalNotification(week, "18", subject)
+            case .denied:
+                print("Application Not Allowed to Display Notifications")
+            default:
+                self.scheduleLocalNotification(week, "18", subject)
+            }
+        }
+    }
+    
+    // MARK: - Private Methods
+    
+    private func requestAuthorization(completionHandler: @escaping (_ success: Bool) -> ()) {
+        // Request Authorization
+        UNUserNotificationCenter.current().requestAuthorization(options: [.alert, .sound, .badge]) { (success, error) in
+            if let error = error {
+                print("Request Authorization Failed (\(error), \(error.localizedDescription))")
+            }
+            
+            completionHandler(success)
+        }
+    }
+    
+    private func scheduleLocalNotification(_ week: String,_ time: String,_ subject: String) {
+        
+        // Create Notification Content
+        let notificationContent = UNMutableNotificationContent()
+        
+        // Configure Notification Content
+        notificationContent.title = "Diet Plan"
+        notificationContent.body = subject
+        let today = Date()
+        
+        if getDayFromDate(date: today) == week {
+        let calendar = NSCalendar.current
+        let components = calendar.dateComponents([.day, .month, .year], from: today)
+        var dateComp:DateComponents = DateComponents()
+        dateComp.day = components.day
+        dateComp.month = components.month
+        dateComp.year = components.year
+            dateComp.hour = Int(time)! % 100
+        dateComp.minute = 00
+            // Add Trigger
+        let notificationTrigger = UNCalendarNotificationTrigger(dateMatching: dateComp, repeats: true)
+        
+        
+        
+        // Create Notification Request
+        let notificationRequest = UNNotificationRequest(identifier: UUID().uuidString, content: notificationContent, trigger: notificationTrigger)
+        
+        // Add Request to User Notification Center
+        UNUserNotificationCenter.current().add(notificationRequest) { (error) in
+            if let error = error {
+                print("Unable to Add Notification Request (\(error), \(error.localizedDescription))")
+            }
+        }
+        }
     }
     
     func setInitials()
@@ -139,9 +216,10 @@ class HomeViewController: UIViewController, FSCalendarDataSource, FSCalendarDele
                            self.count += 1
                     }
                 }
+                self.tableView.reloadData()
                 for week in self.weeks {
                     for meal in self.mealOfDay[week]! {
-                       self.scheduleNotification(week: week, time: meal.time, subject: meal.food)
+                       self.promtForNotification(week: week, time: meal.time, subject: meal.food)
                     }
                 }
             }
@@ -149,34 +227,8 @@ class HomeViewController: UIViewController, FSCalendarDataSource, FSCalendarDele
         
     }
     
-    func scheduleNotification(week: String, time: String, subject: String) {
-        
-        let today = Date()
-        if getDayFromDate(date: today) == week {
-        let calendar = NSCalendar.current
-        let components = calendar.dateComponents([.day, .month, .year], from: today)
-            var dateComp:DateComponents = DateComponents()
-            dateComp.day = components.day
-            dateComp.month = components.month
-            dateComp.year = components.year
-            dateComp.hour = Int(time)
-            dateComp.minute = 00
-            let date = calendar.date(from: dateComp)
-            let localNotificationSilent = UILocalNotification()
-            localNotificationSilent.fireDate = date
-           // localNotificationSilent.repeatInterval = .day
-            localNotificationSilent.alertBody = subject
-            localNotificationSilent.alertAction = "swipe to hear!"
-            localNotificationSilent.category = "PLAY_CATEGORY"
-            UIApplication.shared.scheduleLocalNotification(localNotificationSilent)
-            localNotificationSilent.fireDate = date
-            
-        }
-        
-    }
-    
     func showAlert(_ msg: String) {
-        let alert = UIAlertController(title: "Alert", message: msg, preferredStyle: UIAlertControllerStyle.alert)
+        let alert = UIAlertController(title: "Alert", message: msg, preferredStyle: UIAlertController.Style.alert)
         alert.addAction(UIAlertAction(title: "Ok", style: .default, handler: nil))
         self.present(alert, animated: true, completion: nil)
         
@@ -203,21 +255,17 @@ class HomeViewController: UIViewController, FSCalendarDataSource, FSCalendarDele
         return (isReachable && !needsConnection)
     }
     
-    
-        
-       
-    
-    
-    //TableView
-    
+}
+
+extension HomeViewController: UITableViewDataSource, UITableViewDelegate {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         if let meal = mealOfDay[self.day] {
             return meal.count
         }
         else {
-        return 0
+            return 0
         }
-        }
+    }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "ShowMeal")
@@ -232,4 +280,3 @@ class HomeViewController: UIViewController, FSCalendarDataSource, FSCalendarDele
         return cell!
     }
 }
-
