@@ -107,11 +107,23 @@ class HomeViewController: UIViewController, FSCalendarDataSource, FSCalendarDele
         let notificationContent = UNMutableNotificationContent()
         
         // Configure Notification Content
-        notificationContent.title = "Diet Plan"
+        if hour < 12 {
+            notificationContent.title = "Breakfast Time"
+        }
+        else if hour >= 12 && hour <= 16 {
+            notificationContent.title = "Lunch Time"
+        }
+        else if hour > 16 && hour <= 18 {
+            notificationContent.title = "Snack Time"
+        }
+        else if hour > 18 {
+            notificationContent.title = "Dinner Time"
+        }
         notificationContent.body = subject
         let today = Date()
         
-        if getDayFromDate(date: today) == week {
+        if getDayFromDate(date: today).lowercased() == week {
+            
         let calendar = NSCalendar.current
         let components = calendar.dateComponents([.day, .month, .year], from: today)
         var dateComp:DateComponents = DateComponents()
@@ -119,7 +131,7 @@ class HomeViewController: UIViewController, FSCalendarDataSource, FSCalendarDele
         dateComp.month = components.month
         dateComp.year = components.year
             dateComp.hour = hour
-        dateComp.minute = min
+            dateComp.minute = min
             // Add Trigger
            // Calendar.current.date(byAdding: .minute, value: minutes, to: self)
             
@@ -222,6 +234,7 @@ class HomeViewController: UIViewController, FSCalendarDataSource, FSCalendarDele
                 self.tableView.reloadData()
                 for week in self.weeks {
                     for meal in self.mealOfDay[week]! {
+                        
                         let time:[Substring] = meal.time.split(separator: ":", maxSplits: 2, omittingEmptySubsequences: true)
                            hour = Int(time[0])
                            min = Int(time[1])
