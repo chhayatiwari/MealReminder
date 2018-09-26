@@ -221,6 +221,10 @@ class HomeViewController: UIViewController, FSCalendarDataSource, FSCalendarDele
     
     // Api Call
     func showMealForTheDay() {
+        guard isInternetAvailable() else {
+            showAlert("No Internet Connection")
+            return
+        }
         var hour:Int!
         var min:Int!
         let parameters = ["":""]
@@ -240,7 +244,9 @@ class HomeViewController: UIViewController, FSCalendarDataSource, FSCalendarDele
                            self.count += 1
                     }
                 }
-                self.tableView.reloadData()
+                performUIUpdatesOnMain {
+                    self.tableView.reloadData()
+                }
                 for week in self.weeks {
                     for meal in self.mealOfDay[week]! {
                         
@@ -306,7 +312,6 @@ extension HomeViewController: UITableViewDataSource, UITableViewDelegate {
             cell?.textLabel?.text = meal[index].time
             cell?.detailTextLabel?.text = meal[index].food
         }
-        
         
         return cell!
     }
