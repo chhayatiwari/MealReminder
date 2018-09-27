@@ -30,6 +30,7 @@ class HomeViewController: UIViewController, FSCalendarDataSource, FSCalendarDele
     // Create Notification Content
     let notificationContent = UNMutableNotificationContent()
     var components:DateComponents!
+    var newDate:Date!
     
     fileprivate lazy var dateFormatter: DateFormatter = {
         let formatter = DateFormatter()
@@ -112,12 +113,13 @@ class HomeViewController: UIViewController, FSCalendarDataSource, FSCalendarDele
     private func scheduleLocalNotification(_ week: String, _ hour: Int, _ min: Int,_ subject: String) {
         var hour1 = hour
         var min1 = min
-        var newDate:Date!
+        
         
         
         for i in 1...20
         {
             dateComp.day = i
+           // newDate = Calendar.current.date(byAdding: .day, value: i, to: newDate)
             newDate = calendar1.date(byAdding: dateComp, to: today)
             guard let date = newDate else {
                 return
@@ -141,7 +143,8 @@ class HomeViewController: UIViewController, FSCalendarDataSource, FSCalendarDele
                 dateComp.minute = min1
                 // Add Trigger
                 // Calendar.current.date(byAdding: .minute, value: minutes, to: self)
-                print(dateComp)
+                
+               // print(dateComp)
                 let notificationTrigger = UNCalendarNotificationTrigger(dateMatching: dateComp, repeats: true)
                 
                 // Configure Notification Content
@@ -262,6 +265,7 @@ class HomeViewController: UIViewController, FSCalendarDataSource, FSCalendarDele
                     self.tableView.reloadData()
                 }
                 for week in self.weeks {
+                    
                     for meal in self.mealOfDay[week]! {
                         
                         let time:[Substring] = meal.time.split(separator: ":", maxSplits: 2, omittingEmptySubsequences: true)
