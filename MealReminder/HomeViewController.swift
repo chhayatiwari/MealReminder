@@ -24,6 +24,12 @@ class HomeViewController: UIViewController, FSCalendarDataSource, FSCalendarDele
     var mealOfDay:[String:[MealDay]] = [:]
     var day:String!
     var count = 0
+    let today = Date()
+    let calendar1 = NSCalendar.current
+    var dateComp:DateComponents = DateComponents()
+    // Create Notification Content
+    let notificationContent = UNMutableNotificationContent()
+    var components:DateComponents!
     
     fileprivate lazy var dateFormatter: DateFormatter = {
         let formatter = DateFormatter()
@@ -44,7 +50,9 @@ class HomeViewController: UIViewController, FSCalendarDataSource, FSCalendarDele
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        components = calendar1.dateComponents([.day, .month, .year], from: today)
         UNUserNotificationCenter.current().removeAllPendingNotificationRequests()
+        notificationContent.sound = UNNotificationSound(named: UNNotificationSoundName(rawValue: "notify.wav"))
         setInitials()
         // Configure User Notification Center
         UNUserNotificationCenter.current().delegate = self
@@ -104,60 +112,66 @@ class HomeViewController: UIViewController, FSCalendarDataSource, FSCalendarDele
     private func scheduleLocalNotification(_ week: String, _ hour: Int, _ min: Int,_ subject: String) {
         var hour1 = hour
         var min1 = min
-        // Create Notification Content
-        let notificationContent = UNMutableNotificationContent()
+        var newDate:Date!
         
-        // Configure Notification Content
-        if hour < 12 {
-            notificationContent.title = "Breakfast Time"
-        }
-        else if hour >= 12 && hour <= 16 {
-            notificationContent.title = "Lunch Time"
-        }
-        else if hour > 16 && hour <= 18 {
-            notificationContent.title = "Snack Time"
-        }
-        else if hour > 18 {
-            notificationContent.title = "Dinner Time"
-        }
-        notificationContent.body = subject
-        notificationContent.sound = UNNotificationSound(named: UNNotificationSoundName(rawValue: "notify.wav"))
-        let today = Date()
         
-        if getDayFromDate(date: today).lowercased() == week {
-            
-        let calendar = NSCalendar.current
-        let components = calendar.dateComponents([.day, .month, .year], from: today)
-        var dateComp:DateComponents = DateComponents()
-        dateComp.day = components.day
-        dateComp.month = components.month
-        dateComp.year = components.year
-            if min < 5 {
-                min1 = 55
-                hour1 = hour-1
+        for i in 1...20
+        {
+            dateComp.day = i
+            newDate = calendar1.date(byAdding: dateComp, to: today)
+            guard let date = newDate else {
+                return
             }
-            else {
-                min1 = min - 5
-            }
-            dateComp.hour = hour1
-            dateComp.minute = min1
-            // Add Trigger
-           // Calendar.current.date(byAdding: .minute, value: minutes, to: self)
-            
-        let notificationTrigger = UNCalendarNotificationTrigger(dateMatching: dateComp, repeats: true)
-        
-        
-        
-        // Create Notification Request
-        let notificationRequest = UNNotificationRequest(identifier: UUID().uuidString, content: notificationContent, trigger: notificationTrigger)
-        
-        // Add Request to User Notification Center
-        UNUserNotificationCenter.current().add(notificationRequest) { (error) in
-            if let error = error {
-                print("Unable to Add Notification Request (\(error), \(error.localizedDescription))")
+           // print("\(i) \(date)")
+            if getDayFromDate(date: date).lowercased() == week {
+                
+                
+               // dateComp.day = components.day
+               // dateComp.month = components.month
+               // dateComp.year = components.year
+                if min < 5 {
+                    min1 = 55
+                    hour1 = hour - 1
+                }
+                else {
+                    min1 = min - 5
+                }
+                print("\(date) \(hour1)hour \(min1)min")
+                dateComp.hour = hour1
+                dateComp.minute = min1
+                // Add Trigger
+                // Calendar.current.date(byAdding: .minute, value: minutes, to: self)
+                print(dateComp)
+                let notificationTrigger = UNCalendarNotificationTrigger(dateMatching: dateComp, repeats: true)
+                
+                // Configure Notification Content
+                if hour < 12 {
+                    notificationContent.title = "Breakfast Time"
+                }
+                else if hour >= 12 && hour <= 16 {
+                    notificationContent.title = "Lunch Time"
+                }
+                else if hour > 16 && hour <= 18 {
+                    notificationContent.title = "Snack Time"
+                }
+                else if hour > 18 {
+                    notificationContent.title = "Dinner Time"
+                }
+                notificationContent.body = subject
+                
+                
+                // Create Notification Request
+                let notificationRequest = UNNotificationRequest(identifier: UUID().uuidString, content: notificationContent, trigger: notificationTrigger)
+                
+                // Add Request to User Notification Center
+                UNUserNotificationCenter.current().add(notificationRequest) { (error) in
+                    if let error = error {
+                        print("Unable to Add Notification Request (\(error), \(error.localizedDescription))")
+                    }
+                }
             }
         }
-        }
+        
     }
     
     func setInitials()
