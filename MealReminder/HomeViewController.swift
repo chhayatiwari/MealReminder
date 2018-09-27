@@ -120,15 +120,15 @@ class HomeViewController: UIViewController, FSCalendarDataSource, FSCalendarDele
         for i in 0...20
         {
             dateComp.day = i
-            newDate = calendar1.date(byAdding: dateComp, to: today)
+            newDate = calendar1.date(byAdding: Calendar.Component.day, value: i, to: today)//date(byAdding: dateComp, to: today)
             guard let date = newDate else {
                 return
             }
             
             if getDayFromDate(date: date).lowercased() == week {
                 //components = calendar1.dateComponents(in: .current, from: date)
-                print("\(date) \(getDayFromDate(date: date))")
-               components = calendar1.dateComponents([.day, .month, .year], from: today)
+                //print("\(date) \(getDayFromDate(date: date))")
+               components = calendar1.dateComponents([.day, .month, .year], from: date)
                 if min < 5 {
                     min1 = 55
                     hour1 = hour - 1
@@ -136,9 +136,12 @@ class HomeViewController: UIViewController, FSCalendarDataSource, FSCalendarDele
                 else {
                     min1 = min - 5
                 }
+                dateComp.day = components.day
+                dateComp.month = components.month
+                dateComp.year = components.year
                 dateComp.hour = hour1
                 dateComp.minute = min1
-                //print("\(dateComp) \(hour1)hour \(min1)min")
+                print("\(dateComp) \(hour1)hour \(min1)min")
                 // Add Trigger
                 // Calendar.current.date(byAdding: .minute, value: minutes, to: self)
                 

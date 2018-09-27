@@ -10,11 +10,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "MealReminder/HomeViewController.swift"
-            timestampString = "559745769.003457"
+            timestampString = "559747448.3428971"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "224"
-            endingLineNumber = "224"
+            startingLineNumber = "227"
+            endingLineNumber = "227"
             landmarkName = "calendar(_:didSelect:at:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -26,7 +26,7 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "MealReminder/HomeViewController.swift"
-            timestampString = "559745769.004263"
+            timestampString = "559747448.343874"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "60"
@@ -42,11 +42,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "MealReminder/HomeViewController.swift"
-            timestampString = "559745769.004771"
+            timestampString = "559747448.344366"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "220"
-            endingLineNumber = "220"
+            startingLineNumber = "223"
+            endingLineNumber = "223"
             landmarkName = "calendar(_:didSelect:at:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -58,55 +58,7 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "MealReminder/HomeViewController.swift"
-            timestampString = "559745769.00526"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "249"
-            endingLineNumber = "249"
-            landmarkName = "showMealForTheDay()"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "No"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "MealReminder/HomeViewController.swift"
-            timestampString = "559745769.005742"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "246"
-            endingLineNumber = "246"
-            landmarkName = "showMealForTheDay()"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "No"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "MealReminder/HomeViewController.swift"
-            timestampString = "559745769.006229"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "251"
-            endingLineNumber = "251"
-            landmarkName = "showMealForTheDay()"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "No"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "MealReminder/HomeViewController.swift"
-            timestampString = "559745769.006732"
+            timestampString = "559747448.344781"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "252"
@@ -122,11 +74,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "MealReminder/HomeViewController.swift"
-            timestampString = "559745769.007224"
+            timestampString = "559747448.345252"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "260"
-            endingLineNumber = "260"
+            startingLineNumber = "249"
+            endingLineNumber = "249"
             landmarkName = "showMealForTheDay()"
             landmarkType = "7">
          </BreakpointContent>
@@ -138,11 +90,59 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "MealReminder/HomeViewController.swift"
-            timestampString = "559745769.007713"
+            timestampString = "559747448.345736"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "302"
-            endingLineNumber = "302"
+            startingLineNumber = "254"
+            endingLineNumber = "254"
+            landmarkName = "showMealForTheDay()"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "MealReminder/HomeViewController.swift"
+            timestampString = "559747448.346168"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "255"
+            endingLineNumber = "255"
+            landmarkName = "showMealForTheDay()"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "MealReminder/HomeViewController.swift"
+            timestampString = "559747448.346559"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "263"
+            endingLineNumber = "263"
+            landmarkName = "showMealForTheDay()"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "MealReminder/HomeViewController.swift"
+            timestampString = "559747448.346974"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "305"
+            endingLineNumber = "305"
             landmarkName = "isInternetAvailable()"
             landmarkType = "7">
          </BreakpointContent>
@@ -154,11 +154,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "MealReminder/HomeViewController.swift"
-            timestampString = "559745769.008341"
+            timestampString = "559747448.347384"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "290"
-            endingLineNumber = "290"
+            startingLineNumber = "293"
+            endingLineNumber = "293"
             landmarkName = "isInternetAvailable()"
             landmarkType = "7">
          </BreakpointContent>
@@ -170,23 +170,7 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "MealReminder/HomeViewController.swift"
-            timestampString = "559745769.009169"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "291"
-            endingLineNumber = "291"
-            landmarkName = "isInternetAvailable()"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "No"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "MealReminder/HomeViewController.swift"
-            timestampString = "559745769.009663"
+            timestampString = "559747448.3477859"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "294"
@@ -202,11 +186,27 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "MealReminder/HomeViewController.swift"
-            timestampString = "559745769.0100631"
+            timestampString = "559747448.348193"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "174"
-            endingLineNumber = "174"
+            startingLineNumber = "297"
+            endingLineNumber = "297"
+            landmarkName = "isInternetAvailable()"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "MealReminder/HomeViewController.swift"
+            timestampString = "559747448.348673"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "177"
+            endingLineNumber = "177"
             landmarkName = "scheduleLocalNotification(_:_:_:_:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -218,11 +218,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "MealReminder/HomeViewController.swift"
-            timestampString = "559745769.010574"
+            timestampString = "559747448.349194"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "266"
-            endingLineNumber = "266"
+            startingLineNumber = "269"
+            endingLineNumber = "269"
             landmarkName = "showMealForTheDay()"
             landmarkType = "7">
          </BreakpointContent>
@@ -234,11 +234,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "MealReminder/HomeViewController.swift"
-            timestampString = "559745769.011076"
+            timestampString = "559747448.349654"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "271"
-            endingLineNumber = "271"
+            startingLineNumber = "274"
+            endingLineNumber = "274"
             landmarkName = "showMealForTheDay()"
             landmarkType = "7">
          </BreakpointContent>
@@ -250,7 +250,7 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "MealReminder/HomeViewController.swift"
-            timestampString = "559745769.01168"
+            timestampString = "559747448.350046"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "108"
@@ -266,7 +266,7 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "MealReminder/HomeViewController.swift"
-            timestampString = "559745769.01222"
+            timestampString = "559747448.350468"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "122"
@@ -282,7 +282,7 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "MealReminder/HomeViewController.swift"
-            timestampString = "559745769.012735"
+            timestampString = "559747448.350899"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "110"
@@ -298,7 +298,7 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "MealReminder/HomeViewController.swift"
-            timestampString = "559745769.0132329"
+            timestampString = "559747448.351266"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "128"
@@ -314,7 +314,7 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "MealReminder/HomeViewController.swift"
-            timestampString = "559745769.01373"
+            timestampString = "559747448.351642"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "131"
@@ -330,7 +330,7 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "MealReminder/HomeViewController.swift"
-            timestampString = "559745769.014239"
+            timestampString = "559747448.352064"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "134"
@@ -346,11 +346,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "MealReminder/HomeViewController.swift"
-            timestampString = "559745769.014679"
+            timestampString = "559747448.352461"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "145"
-            endingLineNumber = "145"
+            startingLineNumber = "148"
+            endingLineNumber = "148"
             landmarkName = "scheduleLocalNotification(_:_:_:_:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -362,7 +362,7 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "MealReminder/HomeViewController.swift"
-            timestampString = "559745769.015004"
+            timestampString = "559747448.352844"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "76"
@@ -378,7 +378,7 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "MealReminder/HomeViewController.swift"
-            timestampString = "559745769.015319"
+            timestampString = "559747448.35315"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "83"
@@ -394,7 +394,7 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "MealReminder/HomeViewController.swift"
-            timestampString = "559745769.015712"
+            timestampString = "559747448.3534811"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "86"
@@ -410,7 +410,7 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "MealReminder/HomeViewController.swift"
-            timestampString = "559745769.016275"
+            timestampString = "559747448.353781"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "88"
