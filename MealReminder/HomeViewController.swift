@@ -90,7 +90,7 @@ class HomeViewController: UIViewController, FSCalendarDataSource, FSCalendarDele
                 // Schedule Local Notification
                 self.scheduleLocalNotification(week, hour, min, subject)
             case .denied:
-                print("Application Not Allowed to Display Notifications")
+                self.showAlert("Application Not Allowed to Display Notifications")
             default:
                 self.scheduleLocalNotification(week, hour, min, subject)
             }
@@ -103,7 +103,7 @@ class HomeViewController: UIViewController, FSCalendarDataSource, FSCalendarDele
         // Request Authorization
         UNUserNotificationCenter.current().requestAuthorization(options: [.alert, .sound, .badge]) { (success, error) in
             if let error = error {
-                print("Request Authorization Failed (\(error), \(error.localizedDescription))")
+                self.showAlert("Request Authorization Failed (\(error), \(error.localizedDescription))")
             }
             
             completionHandler(success)
@@ -116,21 +116,17 @@ class HomeViewController: UIViewController, FSCalendarDataSource, FSCalendarDele
         
         
         
-        for i in 1...20
+        for i in 0...20
         {
             dateComp.day = i
-           // newDate = Calendar.current.date(byAdding: .day, value: i, to: newDate)
             newDate = calendar1.date(byAdding: dateComp, to: today)
             guard let date = newDate else {
                 return
             }
-           // print("\(i) \(date)")
             if getDayFromDate(date: date).lowercased() == week {
-                
-                
-               // dateComp.day = components.day
-               // dateComp.month = components.month
-               // dateComp.year = components.year
+                //components = calendar1.dateComponents(in: .current, from: date)
+                print("\(date) \(getDayFromDate(date: date))")
+               
                 if min < 5 {
                     min1 = 55
                     hour1 = hour - 1
@@ -138,9 +134,9 @@ class HomeViewController: UIViewController, FSCalendarDataSource, FSCalendarDele
                 else {
                     min1 = min - 5
                 }
-                print("\(date) \(hour1)hour \(min1)min")
                 dateComp.hour = hour1
                 dateComp.minute = min1
+                print("\(dateComp) \(hour1)hour \(min1)min")
                 // Add Trigger
                 // Calendar.current.date(byAdding: .minute, value: minutes, to: self)
                 
@@ -271,9 +267,7 @@ class HomeViewController: UIViewController, FSCalendarDataSource, FSCalendarDele
                         let time:[Substring] = meal.time.split(separator: ":", maxSplits: 2, omittingEmptySubsequences: true)
                            hour = Int(time[0])
                            min = Int(time[1])
-                            print(hour!)
-                            print(min!)
-                        
+                        print("\(week) \(hour!) \(min!) \(meal.food)")
                         self.promtForNotification(week: week, hour: hour!, min: min!, subject: meal.food)
                     }
                 }
