@@ -24,13 +24,7 @@ class HomeViewController: UIViewController, FSCalendarDataSource, FSCalendarDele
     var mealOfDay:[String:[MealDay]] = [:]
     var day:String!
     var count = 0
-    let today = Date()
-    let calendar1 = NSCalendar.current
-    var dateComp:DateComponents = DateComponents()
-    // Create Notification Content
-    let notificationContent = UNMutableNotificationContent()
-    var components:DateComponents!
-    var newDate:Date!
+    
     
     fileprivate lazy var dateFormatter: DateFormatter = {
         let formatter = DateFormatter()
@@ -51,9 +45,9 @@ class HomeViewController: UIViewController, FSCalendarDataSource, FSCalendarDele
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        components = calendar1.dateComponents([.day, .month, .year], from: today)
+        
         UNUserNotificationCenter.current().removeAllPendingNotificationRequests()
-        notificationContent.sound = UNNotificationSound(named: UNNotificationSoundName(rawValue: "notify.wav"))
+        
         setInitials()
         // Configure User Notification Center
         UNUserNotificationCenter.current().delegate = self
@@ -113,7 +107,14 @@ class HomeViewController: UIViewController, FSCalendarDataSource, FSCalendarDele
     private func scheduleLocalNotification(_ week: String, _ hour: Int, _ min: Int,_ subject: String) {
         var hour1 = hour
         var min1 = min
-        
+        let today = Date()
+        let calendar1 = NSCalendar.current
+        var dateComp:DateComponents = DateComponents()
+        // Create Notification Content
+        let notificationContent = UNMutableNotificationContent()
+        notificationContent.sound = UNNotificationSound(named: UNNotificationSoundName(rawValue: "notify.wav"))
+        var components:DateComponents!
+        var newDate:Date!
         
         
         for i in 0...20
@@ -123,10 +124,11 @@ class HomeViewController: UIViewController, FSCalendarDataSource, FSCalendarDele
             guard let date = newDate else {
                 return
             }
+            
             if getDayFromDate(date: date).lowercased() == week {
                 //components = calendar1.dateComponents(in: .current, from: date)
                 print("\(date) \(getDayFromDate(date: date))")
-               
+               components = calendar1.dateComponents([.day, .month, .year], from: today)
                 if min < 5 {
                     min1 = 55
                     hour1 = hour - 1
@@ -136,11 +138,10 @@ class HomeViewController: UIViewController, FSCalendarDataSource, FSCalendarDele
                 }
                 dateComp.hour = hour1
                 dateComp.minute = min1
-                print("\(dateComp) \(hour1)hour \(min1)min")
+                //print("\(dateComp) \(hour1)hour \(min1)min")
                 // Add Trigger
                 // Calendar.current.date(byAdding: .minute, value: minutes, to: self)
                 
-               // print(dateComp)
                 let notificationTrigger = UNCalendarNotificationTrigger(dateMatching: dateComp, repeats: true)
                 
                 // Configure Notification Content
